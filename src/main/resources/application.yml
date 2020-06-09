@@ -4,9 +4,23 @@ server:
 spring:
   application:
     name: zipkin
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    virtual-host: /
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#    virtual-host: /
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+
+zipkin:
+  collector:
+    rabbitmq:
+      addresses: localhost:5672
+      password: guest
+      username: guest
+      queue: sleuth

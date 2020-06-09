@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '1.5.10.RELEASE'
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 	id 'idea'
@@ -13,26 +13,9 @@ repositories {
 	maven { url "https://maven.aliyun.com/repository/central" }
 }
 
-ext {
-	set('springCloudVersion', "Hoxton.SR4")
-}
-
 dependencies {
-	implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin-stream:1.3.6.RELEASE'
-	implementation 'io.zipkin.java:zipkin-autoconfigure-ui:2.7.1'
-	implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
-
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
-
-test {
-	useJUnitPlatform()
+	implementation 'io.zipkin.java:zipkin-server:2.12.3'
+	implementation 'io.zipkin.java:zipkin-autoconfigure-collector-rabbitmq:2.12.3'
+	implementation 'io.zipkin.java:zipkin-autoconfigure-ui:2.12.3'
+	implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 }
